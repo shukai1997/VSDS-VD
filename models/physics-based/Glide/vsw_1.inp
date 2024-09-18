@@ -1,0 +1,80 @@
+########## Virtual Screening Workflow Input File ###############
+# Run as: $SCHRODINGER/vsw <inputfile> 
+
+[SET:ORIGINAL_LIGANDS]
+    VARCLASS   Structures
+    FILES  /home/shukai/expanding_boundary/data/ligands/O00329/actives.sdf,
+
+[SET:GRID_1]
+    VARCLASS   Grid
+    FILE   /home/shukai/expanding_boundary/data/targets_actives/O00329/6PYR_optimal.zip
+
+[STAGE:LIGPREP]
+    STAGECLASS   ligprep.LigPrepStage
+    INPUTS   ORIGINAL_LIGANDS,
+    OUTPUTS   LIGPREP_OUT,
+    RECOMBINE   YES
+    RETITLE   YES
+    MIXLIGS   YES
+    SKIP_BAD_LIGANDS   YES
+    UNIQUEFIELD   NONE
+    OUTCOMPOUNDFIELD   s_vsw_compound_code
+    USE_EPIK   YES
+    METAL_BINDING   NO
+    PH   7.0
+    PHT   2.0
+    NRINGCONFS   1
+    COMBINEOUTS   NO
+    STEREO_SOURCE   parities
+    NUM_STEREOISOMERS   32
+    MAX_STEREOISOMERS   4
+    REGULARIZE   NO
+
+[STAGE:POSTLIGPREP]
+    STAGECLASS   ligprep.PostLigPrepStage
+    INPUTS   LIGPREP_OUT,
+    OUTPUTS   POSTLIGPREP_OUT,
+    UNIQUEFIELD   s_vsw_compound_code
+    OUTVARIANTFIELD   s_vsw_variant
+    PRESERVE_NJOBS   YES
+    REMOVE_PENALIZED_STATES   YES
+
+[STAGE:PRE_DOCK_SP_1]
+    STAGECLASS   gencodes.RecombineStage
+    INPUTS   POSTLIGPREP_OUT,
+    OUTPUTS   DOCK_SP_1_INPUT,
+    NUMOUT   njobs
+    OUTFORMAT   maegz
+    MIN_SUBJOB_STS   300
+    MAX_SUBJOB_STS   3000
+    GENCODES   NO
+    UNIQUEFIELD   s_vsw_compound_code
+
+[STAGE:DOCK_SP_1]
+    STAGECLASS   glide.DockingStage
+    INPUTS   DOCK_SP_1_INPUT, GRID_1
+    OUTPUTS   SP_OUT_1,
+    RECOMBINE   NO
+    PRECISION   SP
+    UNIQUEFIELD   s_vsw_compound_code
+    PERCENT_TO_KEEP   100
+    DOCKING_METHOD   confgen
+    POSES_PER_LIG   10
+    WRITE_XP_DESC   NO
+    NENHANCED_SAMPLING   1
+    BEST_BY_TITLE   NO
+    LIG_VSCALE   0.8
+    LIG_CCUT   0.15
+    MAXATOMS   300
+    MAXROTBONDS   50
+    AMIDE_MODE   penal
+    POSE_OUTTYPE   PV
+    POSTDOCK   YES
+    POSTDOCKSTRAIN   NO
+    COMPRESS_POSES   YES
+    EPIK_PENALTIES   YES
+    FORCEPLANAR   NO
+
+[USEROUTS]
+    USEROUTS   SP_OUT_1, POSTLIGPREP_OUT
+    STRUCTOUT   SP_OUT_1
