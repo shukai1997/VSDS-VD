@@ -126,10 +126,10 @@ if __name__ == "__main__":
 
     argparser = argparse.ArgumentParser()
     argparser.add_argument('--true_ligand', 
-                        default='./post_process/true_ligand.mol2',
+                        default='./true_ligand.mol2',
                         help='the crystal ligand')
     argparser.add_argument('--predicted_ligand', 
-                        default='./post_process/predicted_ligand.sdf',
+                        default='./predicted_ligand.sdf',
                         help='the predicted ligand conformation')
     argparser.add_argument('--method', 
                             default='align',
