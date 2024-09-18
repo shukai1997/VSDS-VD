@@ -54,7 +54,7 @@ e.g.
 
 ```
 cd /root/VSDS-VD/post_process 
-python -u post_processing.py --predicted_ligand /root/VSDS-VD/post_process/predcted_ligand.sdf
+python -u post_processing.py --true_ligand ./true_ligand.mol2 --predicted_ligand ./predicted_ligand.sdf --method align
 ```
 
 ## Metrics Calculation
