@@ -24,7 +24,7 @@ Four AI-powered docking tools (CarsiDock, KarmaDock, DiffDock, and FlexPose), fo
 
 #### AI-powered docking tools
 
-The AI-powered docking  and rescoring protocols can be used from their specific Github repository.
+The AI-powered docking and rescoring protocols can be used from their specific Github repository.
 
 ```
 CarsiDock : https://github.com/carbonsilicon-ai/CarsiDock
