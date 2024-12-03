@@ -9,6 +9,7 @@ import argparse
 import os
 
 
+
 def set_rdkit_mol_position(rdkit_mol, position):
     for j in range(position.shape[0]):
         rdkit_mol.GetConformer().SetAtomPosition(j,

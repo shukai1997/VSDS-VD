@@ -5,7 +5,7 @@ import argparse
 os.environ["BABEL_LIBDIR"] = "/home/shukai/miniconda3/envs/pbcnet/lib/openbabel/3.1.1"
 from oddt import metrics
 
-
+#Please pip install Posebuster before use the code
 
 def docking_result_dealt(ligand_true, ligand_predict , protein_file):
     cmd = 'bust %s -l %s -p %s --outfmt csv --output docking_result.csv'%(ligand_predict, ligand_true , protein_file)
