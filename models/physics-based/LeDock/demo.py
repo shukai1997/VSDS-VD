@@ -5,6 +5,8 @@ import glob
 import csv
 from wrapt_timeout_decorator import timeout
 
+#Please adjust your file path and sorfware path
+
 def prepare_receptor_local(protein_file:str, output_file:str,verbose:bool=True):
     output_dir = os.path.dirname(output_file)
     command = f'cd {output_dir} && /home/ruolan/shukai/ledock/tools/LeDock/lepro {protein_file}'

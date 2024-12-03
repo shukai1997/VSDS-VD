@@ -1,6 +1,8 @@
 import os
 from multiprocessing import Pool
 
+#Please adjust your file path
+
 def get_pdbid(path):
     for file in os.listdir(path):
         if 'optimal.pdb' in file:

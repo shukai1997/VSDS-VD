@@ -2,6 +2,9 @@ import subprocess
 import os
 import glob
 
+#Please adjust your file path and sorfware path
+
+
 def mol2_to_sdf(mol2_file:str, output_file:str):
     if os.path.exists(output_file):
         print(f'{output_file}: Exist!')

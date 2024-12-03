@@ -6,6 +6,7 @@ from multiprocessing import Pool
 from wrapt_timeout_decorator import timeout
 os.environ["TA_LICENSE"] = "/home/shukai/expanding_boundary/models/pyhsical-based-docking-tools/Surflex/tools/sybylx2.1.1/AdminTools11.6"
 
+#Please adjust your file path and sorfware path
 
 def pdb_to_mol2(pdb_file:str, output_file:str):
     # if os.path.exists(output_file):
